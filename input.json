@@ -1,0 +1,63 @@
+{
+    "meta": {
+        "iid": 0,
+        "metricName": "MS_SAF_SC_TR_EDIT_REP",
+        "mid": 100216,
+        "pid": 0,
+        "title": "Safety conversation targets"
+    },
+    "structure": {
+        "multirow": [],
+        "nonmultirow": {
+            "field": [
+                      {
+                      "id": "LOGIN_ID",
+                      "required": "no"
+                      },
+                      {
+                      "id": "DEPARTMENT",
+                      "label": "Department",
+                      "required": "no"
+                      },
+                      {
+                      "id": "AIRPORT",
+                      "label": "Locale",
+                      "required": "no"
+                      },
+                      {
+                      "id": "MONTH",
+                      "label": "Month",
+                      "required": "no"
+                      },
+                      {
+                      "id": "FINANCIAL_YEAR",
+                      "label": "Financial year",
+                      "required": "yes"
+                      }
+                      ]
+        }
+    },
+    "content": {
+        "multirow": [],
+        "nonmultirow": {
+            "field": [
+                      {
+                      "id": "LOGIN_ID"
+                      },
+                      {
+                      "id": "DEPARTMENT"
+                      },
+                      {
+                      "id": "AIRPORT"
+                      },
+                      {
+                      "id": "MONTH"
+                      },
+                      {
+                      "id": "FINANCIAL_YEAR",
+                      "value": "2015-2016"
+                      }
+                      ]
+        }
+    }
+}
