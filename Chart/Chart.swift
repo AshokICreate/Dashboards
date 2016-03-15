@@ -8,7 +8,11 @@
 
 import UIKit
 
-class Chart: UIView {
+protocol ChartDelegate{
+    func showPopup(viewController:UIViewController)
+}
+
+class Chart: UIView, DisplayViewDelegate {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -18,10 +22,12 @@ class Chart: UIView {
     }
     */
     
-    let yaxis:YAxis,xaxis:XAxis,displayView:DisplayView,legendView:LegendView
+    let yaxis:YAxis,xaxis:XAxis,displayView:DisplayView,legendView:LegendView,titleView:UILabel
     let colors = ReadColorsBundle.instance.getColors()
+    var chartDelegate:ChartDelegate?
+
     
-    init(frame: CGRect, graph: ChartTypesEnum,data:[String:[String:ChartUnitData]],axisValues:[String],colorValues:[String]) {
+    init(frame: CGRect, graph: ChartTypesEnum,data:[String:[String:ChartUnitData]],axisValues:[String],colorValues:[String],xAxisName:String,yAxisName:String) {
     
         
         var high:CGFloat = 0.0;
@@ -83,16 +89,23 @@ class Chart: UIView {
         displayView.lowValue = 0;
         displayView.xAxisKeys = axisValues;
         displayView.colorKeys = colorValues;
+        displayView.xAxisName = xAxisName;
+        
+        titleView = UILabel.init(frame: CGRectZero);
+        titleView.textAlignment = NSTextAlignment.Center;
+        titleView.text = xAxisName+" Vs "+yAxisName;
         
         legendView = LegendView.init(frame: CGRectZero, data: colorValues,colors:colors);
         super.init(frame: frame)
         
-        
+        displayView.delegate = self;
         
         self.addSubview(xaxis);
         self.addSubview(yaxis);
         self.addSubview(displayView);
         self.addSubview(legendView);
+        self.addSubview(titleView);
+    
         
     }
 
@@ -101,13 +114,14 @@ class Chart: UIView {
         xaxis = XAxis.init(coder: aDecoder)!
         displayView = DisplayView.init(coder: aDecoder)!
         legendView = LegendView.init(coder: aDecoder)!
+        titleView = UILabel.init(coder: aDecoder)!
         super.init(coder: aDecoder)
     }
     
     override func layoutSubviews() {
         
         let startX:CGFloat = 80
-        let startY:CGFloat = 15
+        let startY:CGFloat = 75
         let legendSpace:CGFloat = 60
         
         let endX = self.frame.size.width - startX - 5
@@ -117,7 +131,17 @@ class Chart: UIView {
         yaxis.frame = CGRect(x: 0, y:startY-8, width: startX, height:endY+16)
         xaxis.frame = CGRect(x:startX, y:startY+endY, width:endX, height:60)
         legendView.frame = CGRect(x:10, y:self.frame.size.height-legendSpace+5, width:self.frame.size.width-15, height:legendSpace-10);
+        titleView.frame = CGRect(x:0, y:20, width:self.frame.size.width, height:40);
         
+        let layer = CALayer.init();
+        layer.backgroundColor = UIColor.init(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.0).CGColor;
+        layer.frame = CGRectMake(0, CGRectGetHeight(self.frame)-1.0, CGRectGetWidth(self.frame), 1.0);
+        
+        self.layer.addSublayer(layer);
+    }
+    
+    func showPopup(viewController: UIViewController) {
+        chartDelegate!.showPopup(viewController);
     }
 
 }

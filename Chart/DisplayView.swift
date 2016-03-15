@@ -8,7 +8,11 @@
 
 import UIKit
 
-class DisplayView: UIView {
+protocol DisplayViewDelegate{
+    func showPopup(viewController:UIViewController)
+}
+
+class DisplayView: UIView,UIGestureRecognizerDelegate {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -24,5 +28,7 @@ class DisplayView: UIView {
     var xAxisKeys = [String]()
     var colorKeys = [String]()
     let colors = ReadColorsBundle.instance.getColors();
+    var delegate:DisplayViewDelegate?
+    var xAxisName:String?
 
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90C2C361C96FE5700245087 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C2C351C96FE5700245087 /* PopupView.swift */; };
+		E90C2C391C97195D00245087 /* report.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E90C2C371C97195D00245087 /* report.jpg */; };
+		E90C2C3A1C97195D00245087 /* report1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E90C2C381C97195D00245087 /* report1.jpg */; };
+		E90C2C3C1C971BC000245087 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C2C3B1C971BC000245087 /* HomeController.swift */; };
 		E912E0251BFC3D89008E2ECE /* StackedColumnDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912E0241BFC3D89008E2ECE /* StackedColumnDisplayView.swift */; };
 		E912E0271BFC5A22008E2ECE /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912E0261BFC5A22008E2ECE /* PieChart.swift */; };
 		E912E0291BFC6091008E2ECE /* ColorTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E912E0281BFC6091008E2ECE /* ColorTheme.bundle */; };
@@ -31,6 +35,7 @@
 		E966C50F1BEA0F7100AAD56C /* ChartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966C50E1BEA0F7100AAD56C /* ChartTests.swift */; };
 		E966C51A1BEA0F7100AAD56C /* ChartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966C5191BEA0F7100AAD56C /* ChartUITests.swift */; };
 		E96DA3221C841D4B00D81218 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = E96DA3211C841D4B00D81218 /* data.json */; };
+		E9C82CD51C97C60200E7F152 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C82CD41C97C60200E7F152 /* SplashViewController.swift */; };
 		E9F95AD91BEC66BC00AE9DF1 /* YAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F95AD81BEC66BC00AE9DF1 /* YAxis.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E90C2C351C96FE5700245087 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		E90C2C371C97195D00245087 /* report.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = report.jpg; sourceTree = "<group>"; };
+		E90C2C381C97195D00245087 /* report1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = report1.jpg; sourceTree = "<group>"; };
+		E90C2C3B1C971BC000245087 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		E912E0241BFC3D89008E2ECE /* StackedColumnDisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackedColumnDisplayView.swift; sourceTree = "<group>"; };
 		E912E0261BFC5A22008E2ECE /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		E912E0281BFC6091008E2ECE /* ColorTheme.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ColorTheme.bundle; sourceTree = "<group>"; };
@@ -68,20 +77,21 @@
 		E93B99991BFB75CE00664B85 /* DashBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
 		E93EFA7A1BF0814000DA62CD /* XAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XAxis.swift; sourceTree = "<group>"; };
 		E93EFA7C1BF0A41700DA62CD /* Chart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
-		E966C4F61BEA0F7100AAD56C /* Chart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E966C4F61BEA0F7100AAD56C /* Dashboards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dashboards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E966C4F91BEA0F7100AAD56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E966C4FB1BEA0F7100AAD56C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E966C4FE1BEA0F7100AAD56C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E966C5001BEA0F7100AAD56C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E966C5031BEA0F7100AAD56C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E966C5051BEA0F7100AAD56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E966C50A1BEA0F7100AAD56C /* ChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E966C50A1BEA0F7100AAD56C /* Dashboards.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Dashboards.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E966C50E1BEA0F7100AAD56C /* ChartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTests.swift; sourceTree = "<group>"; };
 		E966C5101BEA0F7100AAD56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E966C5151BEA0F7100AAD56C /* ChartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E966C5151BEA0F7100AAD56C /* Dashboards.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Dashboards.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E966C5191BEA0F7100AAD56C /* ChartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartUITests.swift; sourceTree = "<group>"; };
 		E966C51B1BEA0F7100AAD56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E96DA3211C841D4B00D81218 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		E9C82CD41C97C60200E7F152 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E9F95AD81BEC66BC00AE9DF1 /* YAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YAxis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,9 +150,9 @@
 			children = (
 				E96DA3201C841D1F00D81218 /* sampleData */,
 				E912E0281BFC6091008E2ECE /* ColorTheme.bundle */,
-				E966C4F81BEA0F7100AAD56C /* Chart */,
-				E966C50D1BEA0F7100AAD56C /* ChartTests */,
-				E966C5181BEA0F7100AAD56C /* ChartUITests */,
+				E966C4F81BEA0F7100AAD56C /* Dashboards */,
+				E966C50D1BEA0F7100AAD56C /* DashboardsTests */,
+				E966C5181BEA0F7100AAD56C /* DashboardsUITests */,
 				E966C4F71BEA0F7100AAD56C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -150,14 +160,14 @@
 		E966C4F71BEA0F7100AAD56C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E966C4F61BEA0F7100AAD56C /* Chart.app */,
-				E966C50A1BEA0F7100AAD56C /* ChartTests.xctest */,
-				E966C5151BEA0F7100AAD56C /* ChartUITests.xctest */,
+				E966C4F61BEA0F7100AAD56C /* Dashboards.app */,
+				E966C50A1BEA0F7100AAD56C /* Dashboards.xctest */,
+				E966C5151BEA0F7100AAD56C /* Dashboards.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E966C4F81BEA0F7100AAD56C /* Chart */ = {
+		E966C4F81BEA0F7100AAD56C /* Dashboards */ = {
 			isa = PBXGroup;
 			children = (
 				E912E0231BFC3A1B008E2ECE /* Chart */,
@@ -166,31 +176,39 @@
 				E966C4FB1BEA0F7100AAD56C /* ViewController.swift */,
 				E966C4FD1BEA0F7100AAD56C /* Main.storyboard */,
 				E966C5001BEA0F7100AAD56C /* Assets.xcassets */,
+				E90C2C371C97195D00245087 /* report.jpg */,
+				E90C2C381C97195D00245087 /* report1.jpg */,
 				E966C5021BEA0F7100AAD56C /* LaunchScreen.storyboard */,
 				E966C5051BEA0F7100AAD56C /* Info.plist */,
 				E93B99991BFB75CE00664B85 /* DashBoardView.swift */,
 				E912E02A1BFC6302008E2ECE /* ReadColorsBundle.swift */,
 				E91E03DA1C842C0A00D03871 /* Parser.swift */,
 				E92977E71C857EED00101514 /* LoadingScreen.swift */,
+				E90C2C351C96FE5700245087 /* PopupView.swift */,
+				E90C2C3B1C971BC000245087 /* HomeController.swift */,
+				E9C82CD41C97C60200E7F152 /* SplashViewController.swift */,
 			);
+			name = Dashboards;
 			path = Chart;
 			sourceTree = "<group>";
 		};
-		E966C50D1BEA0F7100AAD56C /* ChartTests */ = {
+		E966C50D1BEA0F7100AAD56C /* DashboardsTests */ = {
 			isa = PBXGroup;
 			children = (
 				E966C50E1BEA0F7100AAD56C /* ChartTests.swift */,
 				E966C5101BEA0F7100AAD56C /* Info.plist */,
 			);
+			name = DashboardsTests;
 			path = ChartTests;
 			sourceTree = "<group>";
 		};
-		E966C5181BEA0F7100AAD56C /* ChartUITests */ = {
+		E966C5181BEA0F7100AAD56C /* DashboardsUITests */ = {
 			isa = PBXGroup;
 			children = (
 				E966C5191BEA0F7100AAD56C /* ChartUITests.swift */,
 				E966C51B1BEA0F7100AAD56C /* Info.plist */,
 			);
+			name = DashboardsUITests;
 			path = ChartUITests;
 			sourceTree = "<group>";
 		};
@@ -206,9 +224,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E966C4F51BEA0F7100AAD56C /* Chart */ = {
+		E966C4F51BEA0F7100AAD56C /* Dashboards */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E966C51E1BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "Chart" */;
+			buildConfigurationList = E966C51E1BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "Dashboards" */;
 			buildPhases = (
 				E966C4F21BEA0F7100AAD56C /* Sources */,
 				E966C4F31BEA0F7100AAD56C /* Frameworks */,
@@ -218,14 +236,14 @@
 			);
 			dependencies = (
 			);
-			name = Chart;
+			name = Dashboards;
 			productName = Chart;
-			productReference = E966C4F61BEA0F7100AAD56C /* Chart.app */;
+			productReference = E966C4F61BEA0F7100AAD56C /* Dashboards.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E966C5091BEA0F7100AAD56C /* ChartTests */ = {
+		E966C5091BEA0F7100AAD56C /* DashboardsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E966C5211BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "ChartTests" */;
+			buildConfigurationList = E966C5211BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "DashboardsTests" */;
 			buildPhases = (
 				E966C5061BEA0F7100AAD56C /* Sources */,
 				E966C5071BEA0F7100AAD56C /* Frameworks */,
@@ -236,14 +254,14 @@
 			dependencies = (
 				E966C50C1BEA0F7100AAD56C /* PBXTargetDependency */,
 			);
-			name = ChartTests;
+			name = DashboardsTests;
 			productName = ChartTests;
-			productReference = E966C50A1BEA0F7100AAD56C /* ChartTests.xctest */;
+			productReference = E966C50A1BEA0F7100AAD56C /* Dashboards.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E966C5141BEA0F7100AAD56C /* ChartUITests */ = {
+		E966C5141BEA0F7100AAD56C /* DashboardsUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E966C5241BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "ChartUITests" */;
+			buildConfigurationList = E966C5241BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "DashboardsUITests" */;
 			buildPhases = (
 				E966C5111BEA0F7100AAD56C /* Sources */,
 				E966C5121BEA0F7100AAD56C /* Frameworks */,
@@ -254,9 +272,9 @@
 			dependencies = (
 				E966C5171BEA0F7100AAD56C /* PBXTargetDependency */,
 			);
-			name = ChartUITests;
+			name = DashboardsUITests;
 			productName = ChartUITests;
-			productReference = E966C5151BEA0F7100AAD56C /* ChartUITests.xctest */;
+			productReference = E966C5151BEA0F7100AAD56C /* Dashboards.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -271,6 +289,7 @@
 				TargetAttributes = {
 					E966C4F51BEA0F7100AAD56C = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = XG8SMR2DWH;
 					};
 					E966C5091BEA0F7100AAD56C = {
 						CreatedOnToolsVersion = 7.1;
@@ -282,7 +301,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E966C4F11BEA0F7100AAD56C /* Build configuration list for PBXProject "Chart" */;
+			buildConfigurationList = E966C4F11BEA0F7100AAD56C /* Build configuration list for PBXProject "Dashboards" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -295,9 +314,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E966C4F51BEA0F7100AAD56C /* Chart */,
-				E966C5091BEA0F7100AAD56C /* ChartTests */,
-				E966C5141BEA0F7100AAD56C /* ChartUITests */,
+				E966C4F51BEA0F7100AAD56C /* Dashboards */,
+				E966C5091BEA0F7100AAD56C /* DashboardsTests */,
+				E966C5141BEA0F7100AAD56C /* DashboardsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -313,6 +332,8 @@
 				E96DA3221C841D4B00D81218 /* data.json in Resources */,
 				E92977E61C856AD000101514 /* input.json in Resources */,
 				E912E0291BFC6091008E2ECE /* ColorTheme.bundle in Resources */,
+				E90C2C391C97195D00245087 /* report.jpg in Resources */,
+				E90C2C3A1C97195D00245087 /* report1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +367,7 @@
 				E93EFA7D1BF0A41700DA62CD /* Chart.swift in Sources */,
 				E966C4FC1BEA0F7100AAD56C /* ViewController.swift in Sources */,
 				E912E02B1BFC6302008E2ECE /* ReadColorsBundle.swift in Sources */,
+				E90C2C361C96FE5700245087 /* PopupView.swift in Sources */,
 				E9F95AD91BEC66BC00AE9DF1 /* YAxis.swift in Sources */,
 				E966C4FA1BEA0F7100AAD56C /* AppDelegate.swift in Sources */,
 				E93B999A1BFB75CE00664B85 /* DashBoardView.swift in Sources */,
@@ -353,7 +375,9 @@
 				E93B99941BFB2D2600664B85 /* LinesDisplayView.swift in Sources */,
 				E93EFA7B1BF0814000DA62CD /* XAxis.swift in Sources */,
 				E93B99901BFAE64F00664B85 /* ColumnDisplayView.swift in Sources */,
+				E90C2C3C1C971BC000245087 /* HomeController.swift in Sources */,
 				E912E0251BFC3D89008E2ECE /* StackedColumnDisplayView.swift in Sources */,
+				E9C82CD51C97C60200E7F152 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,12 +402,12 @@
 /* Begin PBXTargetDependency section */
 		E966C50C1BEA0F7100AAD56C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E966C4F51BEA0F7100AAD56C /* Chart */;
+			target = E966C4F51BEA0F7100AAD56C /* Dashboards */;
 			targetProxy = E966C50B1BEA0F7100AAD56C /* PBXContainerItemProxy */;
 		};
 		E966C5171BEA0F7100AAD56C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E966C4F51BEA0F7100AAD56C /* Chart */;
+			target = E966C4F51BEA0F7100AAD56C /* Dashboards */;
 			targetProxy = E966C5161BEA0F7100AAD56C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -425,7 +449,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: phani.sunkara@metricstream.com (MC3CWY96V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: phani.sunkara@metricstream.com (MC3CWY96V7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -444,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -470,7 +495,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: phani.sunkara@metricstream.com (MC3CWY96V7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: phani.sunkara@metricstream.com (MC3CWY96V7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -483,7 +509,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -495,10 +521,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = Chart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.chart.Chart;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.dashboards;
+				PRODUCT_NAME = Dashboards;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -506,10 +536,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = Chart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.chart.Chart;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.dashboards;
+				PRODUCT_NAME = Dashboards;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -520,8 +554,8 @@
 				INFOPLIST_FILE = ChartTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.chart.ChartTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chart.app/Chart";
+				PRODUCT_NAME = Dashboards;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dashboards.app/Dashboards";
 			};
 			name = Debug;
 		};
@@ -532,8 +566,8 @@
 				INFOPLIST_FILE = ChartTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.chart.ChartTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chart.app/Chart";
+				PRODUCT_NAME = Dashboards;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dashboards.app/Dashboards";
 			};
 			name = Release;
 		};
@@ -543,7 +577,7 @@
 				INFOPLIST_FILE = ChartUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.chart.ChartUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Dashboards;
 				TEST_TARGET_NAME = Chart;
 				USES_XCTRUNNER = YES;
 			};
@@ -555,7 +589,7 @@
 				INFOPLIST_FILE = ChartUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.metricstream.chart.ChartUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Dashboards;
 				TEST_TARGET_NAME = Chart;
 				USES_XCTRUNNER = YES;
 			};
@@ -564,7 +598,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E966C4F11BEA0F7100AAD56C /* Build configuration list for PBXProject "Chart" */ = {
+		E966C4F11BEA0F7100AAD56C /* Build configuration list for PBXProject "Dashboards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E966C51C1BEA0F7100AAD56C /* Debug */,
@@ -573,7 +607,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E966C51E1BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "Chart" */ = {
+		E966C51E1BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "Dashboards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E966C51F1BEA0F7100AAD56C /* Debug */,
@@ -582,7 +616,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E966C5211BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "ChartTests" */ = {
+		E966C5211BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "DashboardsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E966C5221BEA0F7100AAD56C /* Debug */,
@@ -591,7 +625,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E966C5241BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "ChartUITests" */ = {
+		E966C5241BEA0F7100AAD56C /* Build configuration list for PBXNativeTarget "DashboardsUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E966C5251BEA0F7100AAD56C /* Debug */,

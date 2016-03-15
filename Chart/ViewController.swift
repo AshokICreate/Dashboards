@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, DashboardDelegate{
     
     var dashboard:DashBoardView = DashBoardView.init(frame:CGRectZero);
     let loader = LoadingScreen.init();
@@ -23,33 +23,44 @@ class ViewController: UIViewController {
         let session = NSURLSession(configuration: config)
         request.HTTPMethod = "POST"
         
-        do{
-            if let path = NSBundle.mainBundle().pathForResource("input", ofType: "json")
+        if let path = NSBundle.mainBundle().pathForResource("data", ofType: "json")
+        {
+            if let jsonData = NSData(contentsOfFile: path)
             {
-                if let jsonData = NSData(contentsOfFile: path)
-                {
-                    let jsonDict = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
-                    
-                    request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(jsonDict!,options:NSJSONWritingOptions.init(rawValue: 0))
-                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                    request.addValue("application/json", forHTTPHeaderField: "Accept")
-            
-                    let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                        if let _ = response as? NSHTTPURLResponse {
-                            self.dashboard.drawDashBoard(data!)
-                            self.loader.hideLoading()
-                        }
-                    
-                    })
-            
-                    task.resume()
-                }
+                self.dashboard.drawDashBoard(jsonData)
+                self.loader.hideLoading()
             }
-        }catch let error as NSError {
-                        // error handling
-                        NSLog("error %@", error.description);
-                    }
+        }
+        
+        
+//        do{
+//            if let path = NSBundle.mainBundle().pathForResource("input", ofType: "json")
+//            {
+//                if let jsonData = NSData(contentsOfFile: path)
+//                {
+//                    let jsonDict = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+//                    
+//                    request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(jsonDict!,options:NSJSONWritingOptions.init(rawValue: 0))
+//                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//                    request.addValue("application/json", forHTTPHeaderField: "Accept")
+//            
+//                    let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+//                        if let _ = response as? NSHTTPURLResponse {
+//                            self.dashboard.drawDashBoard(data!)
+//                            self.loader.hideLoading()
+//                        }
+//                    
+//                    })
+//            
+//                    task.resume()
+//                }
+//            }
+//        }catch let error as NSError {
+//                        // error handling
+//                        NSLog("error %@", error.description);
+//                    }
         self.view = dashboard
+
     }
 
     override func viewDidLoad() {
@@ -60,6 +71,11 @@ class ViewController: UIViewController {
         self.extendedLayoutIncludesOpaqueBars = false;
         self.automaticallyAdjustsScrollViewInsets = false;
 
+        dashboard.dashboardDelegate = self;
+        
+        self.title = "Targets for year 2015-2016";
+        let emailButton : UIBarButtonItem = UIBarButtonItem(title: "Email", style: UIBarButtonItemStyle.Plain, target: self, action: "")
+        self.navigationItem.rightBarButtonItem = emailButton
         
     }
 
@@ -67,7 +83,10 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func showPopup(viewController: UIViewController) {
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
 
 }
 

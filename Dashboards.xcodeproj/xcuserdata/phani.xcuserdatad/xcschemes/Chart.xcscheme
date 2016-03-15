@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E966C4F51BEA0F7100AAD56C"
-               BuildableName = "Chart.app"
-               BlueprintName = "Chart"
-               ReferencedContainer = "container:Chart.xcodeproj">
+               BuildableName = "Dashboards.app"
+               BlueprintName = "Dashboards"
+               ReferencedContainer = "container:Dashboards.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E966C5091BEA0F7100AAD56C"
-               BuildableName = "ChartTests.xctest"
-               BlueprintName = "ChartTests"
-               ReferencedContainer = "container:Chart.xcodeproj">
+               BuildableName = "Dashboards.xctest"
+               BlueprintName = "DashboardsTests"
+               ReferencedContainer = "container:Dashboards.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E966C5141BEA0F7100AAD56C"
-               BuildableName = "ChartUITests.xctest"
-               BlueprintName = "ChartUITests"
-               ReferencedContainer = "container:Chart.xcodeproj">
+               BuildableName = "Dashboards.xctest"
+               BlueprintName = "DashboardsUITests"
+               ReferencedContainer = "container:Dashboards.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E966C4F51BEA0F7100AAD56C"
-            BuildableName = "Chart.app"
-            BlueprintName = "Chart"
-            ReferencedContainer = "container:Chart.xcodeproj">
+            BuildableName = "Dashboards.app"
+            BlueprintName = "Dashboards"
+            ReferencedContainer = "container:Dashboards.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E966C4F51BEA0F7100AAD56C"
-            BuildableName = "Chart.app"
-            BlueprintName = "Chart"
-            ReferencedContainer = "container:Chart.xcodeproj">
+            BuildableName = "Dashboards.app"
+            BlueprintName = "Dashboards"
+            ReferencedContainer = "container:Dashboards.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E966C4F51BEA0F7100AAD56C"
-            BuildableName = "Chart.app"
-            BlueprintName = "Chart"
-            ReferencedContainer = "container:Chart.xcodeproj">
+            BuildableName = "Dashboards.app"
+            BlueprintName = "Dashboards"
+            ReferencedContainer = "container:Dashboards.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

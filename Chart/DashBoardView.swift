@@ -8,7 +8,11 @@
 
 import UIKit
 
-class DashBoardView: UIScrollView {
+protocol DashboardDelegate{
+    func showPopup(viewController:UIViewController)
+}
+
+class DashBoardView: UIScrollView,ChartDelegate {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -18,6 +22,7 @@ class DashBoardView: UIScrollView {
     }
     */
     var charts:[UIView] = [UIView]();
+    var dashboardDelegate:DashboardDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,24 +87,28 @@ class DashBoardView: UIScrollView {
         {
             var parser = Parser.init(jsonData: data, axisColumns: ["MONTH"]);
             let (columnData,columnAxisKeys) = parser.parseElements(measures);
-            let columnChart = Chart.init(frame: CGRectZero, graph: ChartTypesEnum.Column,data:columnData,axisValues:columnAxisKeys,colorValues:measures)
+            let columnChart = Chart.init(frame: CGRectZero, graph: ChartTypesEnum.Column,data:columnData,axisValues:columnAxisKeys,colorValues:measures,xAxisName:"Month",yAxisName:"Targets")
             
+            columnChart.chartDelegate = self;
             
             parser = Parser.init(jsonData: data, axisColumns: ["DEPARTMENT"]);
             let (lineData,lineAxisKeys) = parser.parseElements(measures);
             
-            let lineChart = Chart.init(frame: CGRectZero, graph: ChartTypesEnum.Line,data:lineData,axisValues:lineAxisKeys,colorValues:measures)
+            let lineChart = Chart.init(frame: CGRectZero, graph: ChartTypesEnum.Line,data:lineData,axisValues:lineAxisKeys,colorValues:measures,xAxisName:"Department",yAxisName:"Targets")
+            lineChart.chartDelegate = self;
+            
             
             parser = Parser.init(jsonData: data, axisColumns: ["LOCALE"]);
             let (stackedData,stackedAxisKeys) = parser.parseElements(measures);
             
-            let stackedColumn = Chart.init(frame: CGRectZero, graph: ChartTypesEnum.StackedColumn,data:stackedData,axisValues:stackedAxisKeys,colorValues:measures)
+            let stackedColumn = Chart.init(frame: CGRectZero, graph: ChartTypesEnum.StackedColumn,data:stackedData,axisValues:stackedAxisKeys,colorValues:measures,xAxisName:"Locale",yAxisName:"Targets")
+            stackedColumn.chartDelegate = self;
             
             parser = Parser.init(jsonData: data, axisColumns: ["DEPARTMENT"]);
             let colorKey = measures[0] as String
             let (piedata,pieaxisKeys) = parser.parseElementsForPie(colorKey);
             
-            let pieChart = PieChart.init(frame: CGRectZero,data:piedata,colorValues:pieaxisKeys);
+            let pieChart = PieChart.init(frame: CGRectZero,data:piedata,colorValues:pieaxisKeys,xAxisName:"Department",yAxisName:"Targets");
             
     
             
@@ -110,8 +119,9 @@ class DashBoardView: UIScrollView {
             
             charts.append(columnChart)
             charts.append(lineChart)
-            charts.append(stackedColumn)
             charts.append(pieChart)
+            charts.append(stackedColumn)
+            
             
             //self.backgroundColor = UIColor.grayColor()
             
@@ -127,7 +137,7 @@ class DashBoardView: UIScrollView {
     override func layoutSubviews() {
         
         let width = self.frame.size.width;
-        let height  = self.frame.size.height;
+        let height:CGFloat  = 1000;
         
         
         self.contentSize  = CGSizeMake(width, 2 * height)
@@ -163,5 +173,9 @@ class DashBoardView: UIScrollView {
 //        }
         
         
+    }
+    
+    func showPopup(viewController: UIViewController) {
+        dashboardDelegate!.showPopup(viewController);
     }
 }
