@@ -86,8 +86,11 @@ class SplashViewController: UIViewController
     {
         timer.invalidate()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let myVC = storyboard.instantiateViewControllerWithIdentifier("home")
-        self.presentViewController(myVC, animated: true, completion: nil)
+        let vc : RVC = storyboard.instantiateViewControllerWithIdentifier("RVC") as! RVC
+        
+        let navigationController = UINavigationController(rootViewController: vc)
+        
+        self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
 }
