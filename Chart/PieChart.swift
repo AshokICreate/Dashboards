@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol pieDelegate {
+    func showPopup(viewController:UIViewController)
+}
+
+struct arcAngle {
+    var startAngle: CGFloat
+    var endAngle: CGFloat
+}
 
 class PieChart: UIView {
 
@@ -18,6 +26,11 @@ class PieChart: UIView {
     let colors = ReadColorsBundle.instance.getColors();
     let legendView:LegendView;
     let titleView:UILabel;
+    var holdEndofArcPoints = [CGPoint]()
+    var startEndAngle = [arcAngle]()
+    var delegate: pieDelegate?
+    var xAxisName:String?
+
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -59,6 +72,8 @@ class PieChart: UIView {
             let diff:CGFloat = 0
             let angle = CGFloat(360 - CGFloat(self.colorKeys.count) * diff);
             
+            var arcAngleTemp: arcAngle = arcAngle(startAngle: 0, endAngle: 0)
+            
             for (colorIndex,colorKey) in self.colorKeys.enumerate()
             {
                 if let chartUnit:ChartUnitData = self.data[colorKey]
@@ -66,12 +81,17 @@ class PieChart: UIView {
                     let angle = radians((chartUnit.value / total) * angle)
                     endAngle = startAngle + angle
                     
+                    arcAngleTemp.startAngle = startAngle
+                    arcAngleTemp.endAngle = endAngle
+                    startEndAngle.append(arcAngleTemp)
+                    
                     let index = colorIndex % colors.count
                     let color = colors[index];
                     
                     
                     CGContextSetStrokeColor(currentContext, CGColorGetComponents(color.CGColor))
                     CGContextAddArc(currentContext,centerX,centerY,innerRadius+(radius-innerRadius)/2, startAngle,endAngle, 0)
+                    holdEndofArcPoints.append(CGContextGetPathCurrentPoint(currentContext))
                     CGContextStrokePath(currentContext)
                         
                     
@@ -91,7 +111,7 @@ class PieChart: UIView {
     
     init(frame: CGRect,data:[String:ChartUnitData],colorValues:[String],xAxisName:String,yAxisName:String) {
         
-        
+        self.xAxisName = xAxisName
         self.data = data;
         self.colorKeys = colorValues;
 
@@ -132,5 +152,92 @@ class PieChart: UIView {
         
         self.layer.addSublayer(layer);
     }
-
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        let otherViewsHeight:CGFloat = 160;
+        let width = self.frame.size.width
+        let height = self.frame.size.height-otherViewsHeight
+        let centerX = width/2
+        let centerY = height/2+otherViewsHeight/2;
+        var center: CGPoint = CGPoint()
+        
+        center.x = centerX
+        center.y = centerY
+        
+        let radius = width < height ? (width/2) : (height/2)
+        let innerRadius = radius * 0.6;
+        
+        for touch in touches {
+            
+            let touchLocation = touch.preciseLocationInView(self)
+            let touchDistancefromCenterofThePoint = distanceWithCenter(touchLocation, centerX: centerX, centerY: centerY)
+            
+            if(touchDistancefromCenterofThePoint <= radius && touchDistancefromCenterofThePoint >= innerRadius) {
+                
+                let arcIndex: Int =  sectorIndex(touchLocation, centerX: center.x, centerY: center.y)!
+                
+                
+                let colorKey = self.colorKeys[arcIndex]
+                
+                let unitData = self.data[colorKey]
+                
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("popup") as UIViewController
+                
+                vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+                vc.preferredContentSize = CGSizeMake(420, 90)
+                vc.popoverPresentationController?.sourceRect = CGRect(x: touchLocation.x, y: touchLocation.y, width:0, height:0);
+                vc.popoverPresentationController?.sourceView = self;
+                
+                let popupView:PopupView = vc.view as! PopupView;
+                popupView.header1?.text = self.xAxisName
+                popupView.header2?.text = unitData!.colorName;
+                popupView.label1?.text = unitData!.xname;
+                popupView.label2?.text = String(unitData!.value);
+                
+                let colorIndex = arcIndex % colors.count
+                
+                popupView.header1?.textColor = colors[colorIndex]
+                popupView.header2?.textColor = colors[colorIndex]
+                
+                delegate?.showPopup(vc)
+                
+            }
+        }
+    }
+    
+    func distanceWithCenter(currentTouchPosition: CGPoint, centerX: CGFloat, centerY: CGFloat) -> CGFloat {
+        let dx = currentTouchPosition.x -  centerX
+        let dy = currentTouchPosition.y - centerY
+        
+        return sqrt(dx*dx + dy*dy)
+    }
+    
+    func sectorIndex(touchLocation: CGPoint, centerX: CGFloat, centerY: CGFloat) -> Int? {
+        
+        var keyIndex: Int?
+        
+        let dy = touchLocation.y - centerY
+        let dx = touchLocation.x - centerX
+        
+        var radians: CGFloat = atan2(dy, dx)
+        
+        if (radians < 0) {
+            radians = CGFloat( 2 * M_PI) + radians;
+        }
+        
+        for (key, value) in self.startEndAngle.enumerate() {
+            let startAngle = value.startAngle
+            let endAngle = value.endAngle
+            
+            if radians >= startAngle && radians <= endAngle {
+                keyIndex = key
+                break
+            }
+        }
+        
+        return keyIndex
+    }
 }

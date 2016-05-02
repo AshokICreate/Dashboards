@@ -12,7 +12,7 @@ protocol DashboardDelegate{
     func showPopup(viewController:UIViewController)
 }
 
-class DashBoardView: UIScrollView,ChartDelegate {
+class DashBoardView: UIScrollView,ChartDelegate, pieDelegate {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -109,6 +109,7 @@ class DashBoardView: UIScrollView,ChartDelegate {
             let (piedata,pieaxisKeys) = parser.parseElementsForPie(colorKey);
             
             let pieChart = PieChart.init(frame: CGRectZero,data:piedata,colorValues:pieaxisKeys,xAxisName:"Department",yAxisName:"Targets");
+            pieChart.delegate = self
             
     
             
