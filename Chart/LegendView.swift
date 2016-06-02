@@ -12,8 +12,22 @@ class LegendView: UIView {
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
+    
+    var labelHeight:CGFloat = 0;
+    var labelWidth:CGFloat = 0;
+    var cirlceMeasure:CGFloat = 0;
+    //space between legend values
+    var horizSpace:CGFloat = 0;
+    var verticalSpace:CGFloat = 0;
+    
+    var radius:CGFloat = 0;
+    
+    var fontSize: CGFloat = 0
+    
     override func drawRect(rect: CGRect) {
         // Drawing code
+        
+        setSize()
         
         if(self.values.count<1){
             return;
@@ -27,19 +41,10 @@ class LegendView: UIView {
             CGContextAddRect(currentContext, rect)
             CGContextSetRGBFillColor(currentContext,1.0,1.0,1.0,1.0)
             CGContextFillPath(currentContext)
-            
-            
-            let labelHeight:CGFloat = 20.0;
-            var labelWidth:CGFloat = 100.0;
-            let cirlceMeasure:CGFloat = 16.0;
-            //space between legend values
-            let horizSpace:CGFloat = 10.0;
-            let verticalSpace:CGFloat = 5.0;
-            
-            
+
             let centerX = cirlceMeasure/2;
             let centerY = cirlceMeasure/2;
-            let radius:CGFloat = 5.0;
+
             let cirlceWidth = cirlceMeasure+4;
             
             var sum = 0;
@@ -99,7 +104,8 @@ class LegendView: UIView {
                 paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
                 paragraphStyle.alignment = NSTextAlignment.Left;
                 
-                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(12), NSParagraphStyleAttributeName: paragraphStyle];
+                //Ashok: Legend View Font Value Changed
+                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(self.fontSize), NSParagraphStyleAttributeName: paragraphStyle];
 
                 value.drawInRect(labelRect, withAttributes: attrs);
                 
@@ -138,6 +144,34 @@ class LegendView: UIView {
     
     override func layoutSubviews() {
         self.setNeedsDisplay();
+    }
+    
+    func setSize() {
+        
+        let deviceType = UIDevice.currentDevice()
+        
+        if let path = NSBundle.mainBundle().pathForResource("Size", ofType: "plist"),
+            dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+                
+                let iPhoneComponents = dict[deviceType.model] as? Dictionary<String, AnyObject>
+                let componentSizes = iPhoneComponents!["LegendView"] as? Dictionary<String, AnyObject>
+                
+                let radius: Int = (componentSizes!["radius"] as? Int)!
+                let horizSpace: Int = (componentSizes!["horizSpace"] as? Int)!
+                let verticalSpace: Int = (componentSizes!["verticalSpace"] as? Int)!
+                let circleMeasure: Int = (componentSizes!["circleMeasure"] as? Int)!
+                let labelHeight: Int = (componentSizes!["labelHeight"] as? Int)!
+                let labelWidth: Int = (componentSizes!["labelWidth"] as? Int)!
+                let fontSize: Int = (componentSizes!["fontSize"] as? Int)!
+                
+                self.radius = CGFloat(radius)
+                self.horizSpace = CGFloat(horizSpace)
+                self.verticalSpace = CGFloat(verticalSpace)
+                self.cirlceMeasure = CGFloat(circleMeasure)
+                self.labelHeight = CGFloat(labelHeight)
+                self.labelWidth = CGFloat(labelWidth)
+                self.fontSize = CGFloat(fontSize)
+        }
     }
 
 }

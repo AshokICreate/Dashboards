@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, DashboardDelegate{
+class ViewController: UIViewController, DashboardDelegate, UIAdaptivePresentationControllerDelegate{
     
     var dashboard:DashBoardView = DashBoardView.init(frame:CGRectZero);
     let loader = LoadingScreen.init();
@@ -85,8 +85,15 @@ class ViewController: UIViewController, DashboardDelegate{
     }
     
     func showPopup(viewController: UIViewController) {
+        viewController.presentationController?.delegate = self;
         self.presentViewController(viewController, animated: true, completion: nil)
     }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        // Return no adaptive presentation style, use default presentation behaviour
+        return .None
+    }
+
 
 }
 

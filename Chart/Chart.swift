@@ -22,6 +22,10 @@ class Chart: UIView, DisplayViewDelegate {
     }
     */
     
+    var startX:CGFloat = 0
+    var startY:CGFloat = 0
+    var legendSpace:CGFloat = 0
+    
     let yaxis:YAxis,xaxis:XAxis,displayView:DisplayView,legendView:LegendView,titleView:UILabel
     let colors = ReadColorsBundle.instance.getColors()
     var chartDelegate:ChartDelegate?
@@ -105,7 +109,9 @@ class Chart: UIView, DisplayViewDelegate {
         self.addSubview(displayView);
         self.addSubview(legendView);
         self.addSubview(titleView);
-    
+        
+        setSize()
+
         
     }
 
@@ -120,9 +126,13 @@ class Chart: UIView, DisplayViewDelegate {
     
     override func layoutSubviews() {
         
-        let startX:CGFloat = 80
+       /* let startX:CGFloat = 80
         let startY:CGFloat = 75
-        let legendSpace:CGFloat = 60
+        let legendSpace:CGFloat = 60 */
+        
+       /* let startX:CGFloat = 63
+        let startY:CGFloat = 60
+        let legendSpace:CGFloat = 50 */
         
         let endX = self.frame.size.width - startX - 5
         let endY:CGFloat = self.frame.size.height-startY-60-legendSpace;
@@ -143,5 +153,24 @@ class Chart: UIView, DisplayViewDelegate {
     func showPopup(viewController: UIViewController) {
         chartDelegate!.showPopup(viewController);
     }
-
+    
+    func setSize() {
+        
+        let deviceType = UIDevice.currentDevice()
+        
+        if let path = NSBundle.mainBundle().pathForResource("Size", ofType: "plist"),
+            dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+                
+                let iPhoneComponents = dict[deviceType.model] as? Dictionary<String, AnyObject>
+                let componentSizes = iPhoneComponents!["Chart"] as? Dictionary<String, AnyObject>
+                let startX: Int = (componentSizes!["startX"] as? Int)!
+                let startY: Int = (componentSizes!["startY"] as? Int)!
+                let legendSpace: Int = (componentSizes!["legendSpace"] as? Int)!
+                
+                self.startX = CGFloat(startX)
+                self.startY = CGFloat(startY)
+                self.legendSpace = CGFloat(legendSpace)
+                
+        }
+    }
 }

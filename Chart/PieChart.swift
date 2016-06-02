@@ -18,6 +18,9 @@ struct arcAngle {
 }
 
 class PieChart: UIView {
+    
+    var popupWidth: CGFloat = 0
+    var popupHeight: CGFloat = 0
 
     
     var total:CGFloat = 0;
@@ -30,6 +33,7 @@ class PieChart: UIView {
     var startEndAngle = [arcAngle]()
     var delegate: pieDelegate?
     var xAxisName:String?
+    var otherViewsHeight:CGFloat = 0;
 
     
     // Only override drawRect: if you perform custom drawing.
@@ -37,7 +41,8 @@ class PieChart: UIView {
     override func drawRect(rect: CGRect) {
         // Drawing code
         
-        let otherViewsHeight:CGFloat = 160;
+        setSize()
+        
         let width = self.frame.size.width
         let height = self.frame.size.height-otherViewsHeight
         let centerX = width/2
@@ -187,7 +192,7 @@ class PieChart: UIView {
                 let vc = storyboard.instantiateViewControllerWithIdentifier("popup") as UIViewController
                 
                 vc.modalPresentationStyle = UIModalPresentationStyle.Popover
-                vc.preferredContentSize = CGSizeMake(420, 90)
+                vc.preferredContentSize = CGSizeMake(self.popupWidth, self.popupHeight)
                 vc.popoverPresentationController?.sourceRect = CGRect(x: touchLocation.x, y: touchLocation.y, width:0, height:0);
                 vc.popoverPresentationController?.sourceView = self;
                 
@@ -240,4 +245,32 @@ class PieChart: UIView {
         
         return keyIndex
     }
+    
+    func setSize() {
+        
+        let deviceType = UIDevice.currentDevice()
+        
+        if let path = NSBundle.mainBundle().pathForResource("Size", ofType: "plist"),
+            dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+                
+                let iPhoneComponents = dict[deviceType.model] as? Dictionary<String, AnyObject>
+                let componentSizes = iPhoneComponents!["PieChart"] as? Dictionary<String, AnyObject>
+                let otherViewsHeight: Int = (componentSizes!["otherViewsHeight"] as? Int)!
+                
+                self.otherViewsHeight = CGFloat(otherViewsHeight)
+                print("self.otherViewsHeight = \(self.otherViewsHeight)")
+                
+                let popupComponentSizes = iPhoneComponents!["PopupView"] as? Dictionary<String, AnyObject>
+                let tempPopupWidth: Int = (popupComponentSizes!["popupWidth"] as? Int)!
+                let tempPopupHeight: Int = (popupComponentSizes!["popupHeight"] as? Int)!
+                
+                self.popupWidth =  CGFloat(tempPopupWidth)
+                self.popupHeight = CGFloat(tempPopupHeight)
+
+                
+        }
+    }
+
+    
+    
 }

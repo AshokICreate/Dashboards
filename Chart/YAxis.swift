@@ -10,11 +10,16 @@ import UIKit
 
 class YAxis: UIView {
 
+    var labelHeight:CGFloat = 0
+    var labelX:CGFloat = 0
+    var fontSize: CGFloat = 0
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
+        
+        setSize()
         
         if(self.values.count<1){
             return;
@@ -30,7 +35,7 @@ class YAxis: UIView {
             CGContextFillPath(currentContext)
             
             
-            let labelHeight:CGFloat = 16.0;
+            
             
             CGContextSetStrokeColor(currentContext, CGColorGetComponents(UIColor.init(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 1.0).CGColor))
             CGContextSetLineWidth(currentContext,2.0)
@@ -38,8 +43,6 @@ class YAxis: UIView {
             CGContextAddLineToPoint(currentContext,width,height-labelHeight/2)
             CGContextStrokePath(currentContext)
             
-            
-            let labelX:CGFloat = 10.0;
             let labelWidth:CGFloat = width-CGFloat(2*labelX);
             
             let unitY:CGFloat = ((height-labelHeight)/CGFloat(self.values.count-1))
@@ -53,7 +56,8 @@ class YAxis: UIView {
                 paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
                 paragraphStyle.alignment = NSTextAlignment.Right;
                 
-                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(12), NSParagraphStyleAttributeName: paragraphStyle]
+                //Ashok: Font Value Changed.
+                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(self.fontSize), NSParagraphStyleAttributeName: paragraphStyle]
 
             
 //                CGContextSetLineWidth(currentContext,0.8)
@@ -104,8 +108,23 @@ class YAxis: UIView {
         self.setNeedsDisplay();
     }
     
-  
-    
+    func setSize() {
+        
+        let deviceType = UIDevice.currentDevice()
+        
+        if let path = NSBundle.mainBundle().pathForResource("Size", ofType: "plist"),
+            dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+                
+                let iPhoneComponents = dict[deviceType.model] as? Dictionary<String, AnyObject>
+                let componentSizes = iPhoneComponents!["YAxis"] as? Dictionary<String, AnyObject>
+                let labelHeight: Int = (componentSizes!["labelHeight"] as? Int)!
+                let labelY: Int = (componentSizes!["labelX"] as? Int)!
+                let fontSize: Int = (componentSizes!["fontSize"] as? Int)!
+                self.labelHeight = CGFloat(labelHeight)
+                self.labelX = CGFloat(labelY)
+                self.fontSize = CGFloat(fontSize)
+        }
+    }
     
 
 }

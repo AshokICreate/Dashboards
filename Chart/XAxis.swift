@@ -17,9 +17,14 @@ class XAxis: UIView {
         // Drawing code
     }
     */
+    var labelHeight:CGFloat = 0;
+    var labelY:CGFloat = 0;
+    var fontSize:CGFloat = 0
     
     override func drawRect(rect: CGRect) {
         // Drawing code
+        
+        setSize()
         
         if(self.values.count<1){
             return;
@@ -40,8 +45,7 @@ class XAxis: UIView {
             CGContextAddLineToPoint(currentContext,width,0)
             CGContextStrokePath(currentContext)
             
-            let labelHeight:CGFloat = 16.0;
-            let labelY:CGFloat = 10.0;
+            
             let unitX:CGFloat = width/CGFloat(self.values.count)
             let labelWidth:CGFloat = unitX-CGFloat(labelY);
             
@@ -55,7 +59,8 @@ class XAxis: UIView {
                 paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
                 paragraphStyle.alignment = NSTextAlignment.Center;
                 
-                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(12), NSParagraphStyleAttributeName: paragraphStyle]
+                //Ashok font Value Changed for iPhone.
+                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(self.fontSize), NSParagraphStyleAttributeName: paragraphStyle]
                 
                 CGContextSetLineWidth(currentContext,0.8)
                 CGContextMoveToPoint(currentContext, (unitX*CGFloat(index) + unitX/2), 0)
@@ -101,6 +106,24 @@ class XAxis: UIView {
     
     override func layoutSubviews() {
         self.setNeedsDisplay();
+    }
+    
+    func setSize() {
+        
+        let deviceType = UIDevice.currentDevice()
+        
+        if let path = NSBundle.mainBundle().pathForResource("Size", ofType: "plist"),
+            dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+                
+                let iPhoneComponents = dict[deviceType.model] as? Dictionary<String, AnyObject>
+                let componentSizes = iPhoneComponents!["XAxis"] as? Dictionary<String, AnyObject>
+                let labelHeight: Int = (componentSizes!["labelHeight"] as? Int)!
+                let labelY: Int = (componentSizes!["labelY"] as? Int)!
+                let fontSize: CGFloat = (componentSizes!["fontSize"] as? CGFloat)!
+                self.labelHeight = CGFloat(labelHeight)
+                self.labelY = CGFloat(labelY)
+                self.fontSize = fontSize
+        }
     }
 
 
