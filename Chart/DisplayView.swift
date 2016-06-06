@@ -30,5 +30,8 @@ class DisplayView: UIView,UIGestureRecognizerDelegate {
     let colors = ReadColorsBundle.instance.getColors();
     var delegate:DisplayViewDelegate?
     var xAxisName:String?
+    
+    var startXKeyIndex:CGFloat = 0;
+    var endXKeyIndex:CGFloat = 0;
 
 }

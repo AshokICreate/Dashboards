@@ -73,11 +73,10 @@ class XAxis: UIView {
         }
     }
     
-    let values: [String]
+    var values = [String]()
     
-    init(frame: CGRect, data:[String]) {
+    override init(frame: CGRect) {
         
-        self.values = data;
         super.init(frame: frame)
     }
     
