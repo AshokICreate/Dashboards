@@ -12,10 +12,10 @@ protocol ChartDelegate{
     func showPopup(viewController:UIViewController)
 }
 
-class Chart: UIView, DisplayViewDelegate {
+class Chart: UIView, DisplayViewDelegate, LegendProtocol {
 
     /*
-    // Only override drawRect: if you perform custom drawing.
+    // Only override drawRect: if you perform customvarawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
@@ -99,8 +99,14 @@ class Chart: UIView, DisplayViewDelegate {
         titleView.textAlignment = NSTextAlignment.Center;
         titleView.text = xAxisName+" Vs "+yAxisName;
         
+
+        
         legendView = LegendView.init(frame: CGRectZero, data: colorValues,colors:colors);
+        
         super.init(frame: frame)
+        legendView.legenddelegate = self
+
+
         
         displayView.delegate = self;
         
@@ -173,4 +179,15 @@ class Chart: UIView, DisplayViewDelegate {
                 
         }
     }
+    
+    //MARK: Legend Delegate
+    
+    func singleTapedValues(values: [String]){
+        print("values from legend in chartveiws")
+    }
+    
+    func doubleTapValues(values: [String]){
+        print("values from legend in chartveiws")
+    }
+
 }
