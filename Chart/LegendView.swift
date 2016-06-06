@@ -44,6 +44,7 @@ class LegendView: UIView{
     var singleTapValues: [String] = []
     var doubleTapValues: [String] = []
     var finalvalues: [String] = []
+    var isDoubleTap: Bool = false
 
     
     override func drawRect(rect: CGRect) {
@@ -131,13 +132,31 @@ class LegendView: UIView{
                 paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail;
                 paragraphStyle.alignment = NSTextAlignment.Left;
                 
+                let colorIndex = index % colors.count
+
+                
+                var legendLabelColor = UIColor.blackColor()
+                
+                if self.singleTapValues.indexOf(value) != nil{
+                    legendLabelColor = UIColor.lightGrayColor()
+                }
+                
+                if isDoubleTap{
+                    if self.doubleTapValues.indexOf(value) != nil{
+                        legendLabelColor = colors[colorIndex]
+                    }else{
+                        legendLabelColor = UIColor.lightGrayColor()
+                    }
+                }
+                
+                
+                
                 //Ashok: Legend View Font Value Changed
-                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(self.fontSize), NSParagraphStyleAttributeName: paragraphStyle];
+                let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(self.fontSize), NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: legendLabelColor];
                 
                 value.drawInRect(labelRect, withAttributes: attrs);
                 
                 CGContextRestoreGState(currentContext);
-                let colorIndex = index % colors.count
                 CGContextSetStrokeColor(currentContext, CGColorGetComponents(colors[colorIndex].CGColor))
                 CGContextSetFillColor(currentContext, CGColorGetComponents(colors[colorIndex].CGColor))
                 
@@ -244,9 +263,21 @@ extension LegendView{
         let index = getIndexFromTouchPoint(touchPoint)
         
         //check for doubletap array if that touched element is in double touch then send all the 
+        
+        if isDoubleTap {
+            legenddelegate?.tappedLegendValues(self.values)
+            self.doubleTapValues.removeAll()
+            self.finalvalues = self.values
+            self.setNeedsLayout()
+            isDoubleTap = false
+            return;
+        }
+        
         if let selectedindex = self.doubleTapValues.indexOf(self.values[index]){
             self.doubleTapValues.removeAtIndex(selectedindex)
             legenddelegate?.tappedLegendValues(self.values)
+            self.isDoubleTap = false
+            self.setNeedsLayout()
             return;
         }
         
@@ -261,6 +292,8 @@ extension LegendView{
             let indexinfinalValue = self.finalvalues.indexOf(touchedvalue)
             self.finalvalues.removeAtIndex(indexinfinalValue!)
         }
+        
+        self.setNeedsLayout()
         legenddelegate?.tappedLegendValues( self.finalvalues)
         
     }
@@ -270,16 +303,20 @@ extension LegendView{
         //if double tap send selected values and remove all
         let touchPoint = doubletapgesture.locationInView(doubletapgesture.view)
         let index = getIndexFromTouchPoint(touchPoint)
-    
         
+        self.singleTapValues.removeAll()
+    
         if let selectedindex = self.doubleTapValues.indexOf(self.values[index]){
             self.doubleTapValues.removeAtIndex(selectedindex)
             legenddelegate?.tappedLegendValues(self.values)
+            isDoubleTap = false
         }else{
             self.doubleTapValues.removeAll()
+            isDoubleTap = true
             self.doubleTapValues.append(self.values[index])
             legenddelegate?.tappedLegendValues(self.doubleTapValues)
         }
+        self.setNeedsLayout()
     }
     
     func getIndexFromTouchPoint(point: CGPoint) -> Int {
