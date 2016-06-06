@@ -10,8 +10,7 @@ import UIKit
 
 
 protocol LegendProtocol {
-    func singleTapedValues(values: [String])
-    func doubleTapValues(values: [String])
+    func tappedLegendValues(values: [String])
 }
 
 class LegendView: UIView{
@@ -247,7 +246,7 @@ extension LegendView{
         //check for doubletap array if that touched element is in double touch then send all the 
         if let selectedindex = self.doubleTapValues.indexOf(self.values[index]){
             self.doubleTapValues.removeAtIndex(selectedindex)
-            legenddelegate?.doubleTapValues(self.values)
+            legenddelegate?.tappedLegendValues(self.values)
             return;
         }
         
@@ -262,7 +261,7 @@ extension LegendView{
             let indexinfinalValue = self.finalvalues.indexOf(touchedvalue)
             self.finalvalues.removeAtIndex(indexinfinalValue!)
         }
-        legenddelegate?.singleTapedValues( self.finalvalues)
+        legenddelegate?.tappedLegendValues( self.finalvalues)
         
     }
     
@@ -275,11 +274,11 @@ extension LegendView{
         
         if let selectedindex = self.doubleTapValues.indexOf(self.values[index]){
             self.doubleTapValues.removeAtIndex(selectedindex)
-            legenddelegate?.doubleTapValues(self.values)
+            legenddelegate?.tappedLegendValues(self.values)
         }else{
             self.doubleTapValues.removeAll()
             self.doubleTapValues.append(self.values[index])
-            legenddelegate?.doubleTapValues(self.doubleTapValues)
+            legenddelegate?.tappedLegendValues(self.doubleTapValues)
         }
     }
     

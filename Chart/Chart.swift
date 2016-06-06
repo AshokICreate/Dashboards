@@ -182,12 +182,9 @@ class Chart: UIView, DisplayViewDelegate, LegendProtocol {
     
     //MARK: Legend Delegate
     
-    func singleTapedValues(values: [String]){
+    func tappedLegendValues(values: [String]){
         print("values from legend in chartveiws")
     }
     
-    func doubleTapValues(values: [String]){
-        print("values from legend in chartveiws")
-    }
-
+   
 }
