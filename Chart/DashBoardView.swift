@@ -123,6 +123,7 @@ class DashBoardView: UIScrollView,ChartDelegate, pieDelegate {
             charts.append(pieChart)
             charts.append(stackedColumn)
             
+            self.pagingEnabled = true;
             
             //self.backgroundColor = UIColor.grayColor()
             
@@ -138,7 +139,7 @@ class DashBoardView: UIScrollView,ChartDelegate, pieDelegate {
     override func layoutSubviews() {
         
         let width = self.frame.size.width;
-        let height:CGFloat  = 1000;
+        let height:CGFloat  = self.frame.size.height*2;
         
         
         self.contentSize  = CGSizeMake(width, 2 * height)

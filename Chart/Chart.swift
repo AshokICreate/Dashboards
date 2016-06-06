@@ -12,10 +12,11 @@ protocol ChartDelegate{
     func showPopup(viewController:UIViewController);
 }
 
-class Chart: UIView, DisplayViewDelegate,SliderDelegate {
+class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
+
 
     /*
-    // Only override drawRect: if you perform custom drawing.
+    // Only override drawRect: if you perform customvarawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
@@ -96,12 +97,14 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate {
         titleView.text = xAxisName+" Vs "+yAxisName;
         
         legendView = LegendView.init(frame: CGRectZero, data: colorValues,colors:colors);
-        
         slider = Slider.init(frame: CGRectZero);
         xAxisKeys = axisValues;
         colorKeys = colorValues;
         
         super.init(frame: frame)
+        legendView.legenddelegate = self
+
+
         
         
         
@@ -157,16 +160,19 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate {
         let startY:CGFloat = 60
         let legendSpace:CGFloat = 50 */
         
+        let xAxisHeight:CGFloat = 60;
+        let sliderSpace:CGFloat = 50;
         let endX = self.frame.size.width - startX - 5
-        let endY:CGFloat = self.frame.size.height-startY-60-legendSpace;
+        let endY:CGFloat = self.frame.size.height-startY-xAxisHeight-legendSpace-sliderSpace;
         
+        titleView.frame = CGRect(x:0, y:20, width:self.frame.size.width, height:40);
         displayView.frame = CGRect(x: startX, y:startY, width:endX, height:endY)
         yaxis.frame = CGRect(x: 0, y:startY-8, width: startX, height:endY+16)
-        xaxis.frame = CGRect(x:startX, y:startY+endY, width:endX, height:60)
-        legendView.frame = CGRect(x:10, y:self.frame.size.height-legendSpace+5, width:self.frame.size.width-15, height:legendSpace-10);
-        titleView.frame = CGRect(x:0, y:20, width:self.frame.size.width, height:40);
+        xaxis.frame = CGRect(x:startX, y:startY+endY, width:endX, height:xAxisHeight)
         
-        slider.frame = CGRect(x:startX, y:self.frame.size.height-30, width:endX, height:20);
+        slider.frame = CGRect(x:startX, y:self.frame.size.height-legendSpace-sliderSpace, width:endX, height:20);
+        legendView.frame = CGRect(x:10, y:self.frame.size.height-legendSpace+5, width:self.frame.size.width-15, height:legendSpace-10);
+        
         
         let layer = CALayer.init();
         layer.backgroundColor = UIColor.init(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.0).CGColor;
@@ -210,4 +216,12 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate {
             
         }
     }
+    
+    //MARK: Legend Delegate
+    
+    func tappedLegendValues(values: [String]){
+        print("values from legend in chartveiws \(values)")
+    }
+    
+   
 }

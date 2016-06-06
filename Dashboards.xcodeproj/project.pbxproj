@@ -37,6 +37,7 @@
 		E966C51A1BEA0F7100AAD56C /* ChartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966C5191BEA0F7100AAD56C /* ChartUITests.swift */; };
 		E96DA3221C841D4B00D81218 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = E96DA3211C841D4B00D81218 /* data.json */; };
 		E9C82CD51C97C60200E7F152 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C82CD41C97C60200E7F152 /* SplashViewController.swift */; };
+		E9E7C4D81D05B8D000AAF038 /* ChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E7C4D71D05B8D000AAF038 /* ChartController.swift */; };
 		E9F95AD91BEC66BC00AE9DF1 /* YAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F95AD81BEC66BC00AE9DF1 /* YAxis.swift */; };
 		F9753CB81D0042F50079274C /* Size.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9753CB71D0042F50079274C /* Size.plist */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		E966C51B1BEA0F7100AAD56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E96DA3211C841D4B00D81218 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		E9C82CD41C97C60200E7F152 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		E9E7C4D71D05B8D000AAF038 /* ChartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartController.swift; sourceTree = "<group>"; };
 		E9F95AD81BEC66BC00AE9DF1 /* YAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YAxis.swift; sourceTree = "<group>"; };
 		F9753CB71D0042F50079274C /* Size.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Size.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +195,7 @@
 				E90C2C351C96FE5700245087 /* PopupView.swift */,
 				E90C2C3B1C971BC000245087 /* HomeController.swift */,
 				E9C82CD41C97C60200E7F152 /* SplashViewController.swift */,
+				E9E7C4D71D05B8D000AAF038 /* ChartController.swift */,
 			);
 			name = Dashboards;
 			path = Chart;
@@ -367,6 +370,7 @@
 			files = (
 				E912E0271BFC5A22008E2ECE /* PieChart.swift in Sources */,
 				E91E782D1C76D3510018457A /* LegendView.swift in Sources */,
+				E9E7C4D81D05B8D000AAF038 /* ChartController.swift in Sources */,
 				E93B99961BFB386A00664B85 /* DisplayView.swift in Sources */,
 				E93B99981BFB67EC00664B85 /* ChartFactory.swift in Sources */,
 				E91E03DB1C842C0A00D03871 /* Parser.swift in Sources */,

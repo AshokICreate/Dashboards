@@ -41,12 +41,11 @@ class PieChart: UIView {
     override func drawRect(rect: CGRect) {
         // Drawing code
         
-        setSize()
         
-        let width = self.frame.size.width
-        let height = self.frame.size.height-otherViewsHeight
+        let width = self.frame.size.width;
+        let height = self.frame.size.height-self.otherViewsHeight
         let centerX = width/2
-        let centerY = height/2+otherViewsHeight/2;
+        let centerY = height/2+self.titleView.frame.size.height+self.titleView.frame.origin.y;
         
         let radius = width < height ? (width/2) : (height/2)
         let innerRadius = radius * 0.6;
@@ -146,8 +145,10 @@ class PieChart: UIView {
     }
 
     override func layoutSubviews() {
-        let legendSpace:CGFloat = 60
-        titleView.frame = CGRect(x:0, y:20, width:self.frame.size.width, height:40);
+        setSize()
+        titleView.frame = CGRect(x:0, y:20, width:self.frame.size.width, height:50);
+        let legendSpace:CGFloat = self.otherViewsHeight-self.titleView.frame.size.height-self.titleView.frame.origin.y;
+        
         legendView.frame = CGRect(x:10, y:self.frame.size.height-legendSpace+5, width:self.frame.size.width-15, height:legendSpace-10);
         self.setNeedsDisplay()
         
@@ -160,11 +161,11 @@ class PieChart: UIView {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        let otherViewsHeight:CGFloat = 160;
+        //let otherViewsHeight:CGFloat = 160;
         let width = self.frame.size.width
         let height = self.frame.size.height-otherViewsHeight
         let centerX = width/2
-        let centerY = height/2+otherViewsHeight/2;
+        let centerY = height/2+self.titleView.frame.size.height+self.titleView.frame.origin.y;
         var center: CGPoint = CGPoint()
         
         center.x = centerX
