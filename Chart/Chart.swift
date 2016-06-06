@@ -129,6 +129,7 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
         displayView.lowValue = 0;
         displayView.xAxisKeys = xValues;
         displayView.colorKeys = colorValues;
+        displayView.showKeys = colorValues;
         displayView.xAxisName = xAxisName;
 
         displayView.delegate = self;
@@ -221,6 +222,9 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
     
     func tappedLegendValues(values: [String]){
         print("values from legend in chartveiws \(values)")
+        
+        self.displayView.colorKeys = values;
+        self.displayView.layoutSubviews();
     }
     
    

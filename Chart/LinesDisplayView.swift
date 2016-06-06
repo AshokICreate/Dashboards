@@ -44,7 +44,8 @@ class LinesDisplayView: DisplayView {
                 
                 var points = [CGPoint]();
                 
-                let index = colorIndex % colors.count
+                let orgColorIndex = self.showKeys.indexOf(colorKey);
+                let index = orgColorIndex! % colors.count
                 CGContextSetStrokeColor(currentContext, CGColorGetComponents(colors[index].CGColor))
                 CGContextSetFillColor(currentContext, CGColorGetComponents(colors[index].CGColor))
                 

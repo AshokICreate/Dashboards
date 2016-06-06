@@ -25,6 +25,11 @@ class StackedColumnDisplayView: DisplayView {
 
     
     override func layoutSubviews() {
+        for view in self.subviews
+        {
+            view.removeFromSuperview();
+        }
+        
         self.drawChart();
     }
     
@@ -55,6 +60,7 @@ class StackedColumnDisplayView: DisplayView {
                 for (colorIndex, colorKey) in self.colorKeys.enumerate()
                 {
                     
+                
                     if let chartUnit = pointsAtXKey[colorKey]
                     {
                         
@@ -73,7 +79,9 @@ class StackedColumnDisplayView: DisplayView {
                             
                             let view = UIView.init(frame: CGRectMake(x, y, barWidth, barHeight))
                             
-                            let index = colorIndex % colors.count
+                            let orgColorIndex = self.showKeys.indexOf(colorKey);
+
+                            let index = orgColorIndex! % colors.count
                             view.backgroundColor = colors[index]
                             
                             view.tag = viewIndex;

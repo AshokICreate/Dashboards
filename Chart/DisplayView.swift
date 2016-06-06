@@ -27,6 +27,7 @@ class DisplayView: UIView,UIGestureRecognizerDelegate {
     var lowValue:CGFloat = 0;
     var xAxisKeys = [String]()
     var colorKeys = [String]()
+    var showKeys = [String]()
     let colors = ReadColorsBundle.instance.getColors();
     var delegate:DisplayViewDelegate?
     var xAxisName:String?

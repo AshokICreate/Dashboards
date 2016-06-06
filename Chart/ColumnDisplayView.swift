@@ -25,6 +25,11 @@ class ColumnDisplayView: DisplayView {
     var popupHeight: CGFloat = 0
     
     override func layoutSubviews() {
+        for view in self.subviews
+        {
+            view.removeFromSuperview();
+        }
+        
         self.drawChart();
     }
     
@@ -51,7 +56,7 @@ class ColumnDisplayView: DisplayView {
             
                 for (colorIndex, colorKey) in self.colorKeys.enumerate()
                 {
-                
+                    
                     let x = xUnit * CGFloat(xIndex) + (xUnit - (barWidth*CGFloat(self.colorKeys.count)))/2 + barWidth * CGFloat(colorIndex)
                     
                     if let chartUnit = pointsAtXKey[colorKey]
@@ -71,7 +76,8 @@ class ColumnDisplayView: DisplayView {
                         {
                             let view = UIView.init(frame: CGRectMake(x, y, barWidth, barHeight))
                             
-                            let index = colorIndex % colors.count
+                            let orgColorIndex = self.showKeys.indexOf(colorKey);
+                            let index = orgColorIndex! % colors.count
                             view.backgroundColor = colors[index]
                             view.tag = viewIndex
                             self.addSubview(view)
