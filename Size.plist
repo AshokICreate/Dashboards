@@ -90,9 +90,39 @@
 			<key>popupHeight</key>
 			<integer>78</integer>
 		</dict>
+		<key>SplashVC</key>
+		<dict>
+			<key>fontSize</key>
+			<integer>40</integer>
+			<key>firstNameWidth</key>
+			<integer>118</integer>
+			<key>lastNameWidth</key>
+			<integer>133</integer>
+			<key>height</key>
+			<integer>50</integer>
+			<key>dashBoardWidth</key>
+			<integer>116</integer>
+			<key>dashBoardFontSize</key>
+			<integer>30</integer>
+		</dict>
 	</dict>
 	<key>iPad</key>
 	<dict>
+		<key>SplashVC</key>
+		<dict>
+			<key>fontSize</key>
+			<integer>45</integer>
+			<key>firstNameWidth</key>
+			<integer>133</integer>
+			<key>lastNameWidth</key>
+			<integer>149</integer>
+			<key>height</key>
+			<integer>50</integer>
+			<key>dashBoardWidth</key>
+			<integer>153</integer>
+			<key>dashBoardFontSize</key>
+			<integer>35</integer>
+		</dict>
 		<key>Slider</key>
 		<dict>
 			<key>SliderBaseHeight</key>
