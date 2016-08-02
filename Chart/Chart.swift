@@ -33,59 +33,13 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
     var chartDelegate:ChartDelegate?
     
     let xAxisKeys,colorKeys:[String]?
-    
+    let data:[String:[String:ChartUnitData]];
+    let graph: ChartTypesEnum;
     init(frame: CGRect, graph: ChartTypesEnum,data:[String:[String:ChartUnitData]],axisValues:[String],colorValues:[String],xAxisName:String,yAxisName:String) {
-    
-        
-        var high:CGFloat = 0.0;
-        
-        
-        if(graph == ChartTypesEnum.StackedColumn)
-        {
-            for (_ , values ) in data
-            {
-                var sum:CGFloat = 0.0;
-                for (_ , graphUnit ) in values
-                {
-                    sum = sum + graphUnit.value;
-                    
-                }
-                
-                if(sum > high)
-                {
-                    high = sum;
-                }
-                
-            }
-            
-        }else
-        {
-            for (_ , values ) in data
-            {
-                
-                for (_ , graphUnit ) in values
-                {
-                    if( graphUnit.value > high)
-                    {
-                        high = graphUnit.value
-                    }
-                    
-                }
-                
-            }
-        }
-        
-        var remain = Int(high / 5)+1 ;
-        
-        if(remain%2==1)
-        {
-            remain = remain + 1;
-        }
-        
-        high =  CGFloat (remain * 5);
-        
-        
-        
+      
+        self.data = data;
+        self.graph = graph;
+        let high = Chart.getHigh(graph,data,colorValues);
         yaxis = YAxis.init(frame: CGRectZero, low: 0, high: high, units:5)
         xaxis = XAxis.init(frame: CGRectZero)
         
@@ -105,9 +59,7 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
         legendView.legenddelegate = self
 
 
-        
-        
-        
+      
         self.addSubview(xaxis);
         self.addSubview(yaxis);
         self.addSubview(displayView);
@@ -121,7 +73,10 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
         slider.maxPoints = self.xAxisKeys!.count;
         slider.showPoints = self.minPoints/self.colorKeys!.count;
         slider.delegate = self;
-        
+      
+      if(slider.showPoints>axisValues.count){
+        slider.showPoints = axisValues.count
+      }
         
         let xValues = Array(axisValues[0..<slider.showPoints]);
         displayView.data = data;
@@ -148,6 +103,8 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
         slider = Slider.init(coder: aDecoder)!
         xAxisKeys = [String]();
         colorKeys = [String]();
+        self.data = [String:[String:ChartUnitData]]();
+      self.graph = ChartTypesEnum.Bar;
         super.init(coder: aDecoder)
     }
     
@@ -217,14 +174,75 @@ class Chart: UIView, DisplayViewDelegate,SliderDelegate,LegendProtocol {
             
         }
     }
-    
+  
+    static func getHigh(graph: ChartTypesEnum,_ data:[String:[String:ChartUnitData]],_ colorKeys: [String]) -> CGFloat
+    {
+        var high:CGFloat = 0.0;
+        
+        
+        if(graph == ChartTypesEnum.StackedColumn)
+        {
+          for (_ , values ) in data
+          {
+            var sum:CGFloat = 0.0;
+            for (colorKey , graphUnit ) in values
+            {
+              
+              if(colorKeys.contains(colorKey))
+              {
+                 sum = sum + graphUnit.value;
+              }
+              
+              
+            }
+            
+            if(sum > high)
+            {
+              high = sum;
+            }
+            
+          }
+          
+        }else
+        {
+          for (_ , values ) in data
+          {
+            
+            for (colorKey , graphUnit ) in values
+            {
+              if(colorKeys.contains(colorKey) && graphUnit.value > high)
+              {
+                  high = graphUnit.value
+              }
+              
+            }
+            
+          }
+        }
+      
+      
+        var remain = Int(high / 5)+1 ;
+        
+        if(remain%2==1)
+        {
+          remain = remain + 1;
+        }
+        
+        high =  CGFloat (remain * 5);
+      
+        return high;
+    }
     //MARK: Legend Delegate
-    
+  
     func tappedLegendValues(values: [String]){
         print("values from legend in chartveiws \(values)")
-        
+      
+        let high = Chart.getHigh(self.graph,self.data,values);
+        self.displayView.highValue = high
+      
         self.displayView.colorKeys = values;
-        self.displayView.layoutSubviews();
+      self.yaxis.reDraw(0, high: high, units: 5);
+      self.displayView.reDraw();
     }
     
    

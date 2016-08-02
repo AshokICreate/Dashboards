@@ -34,5 +34,10 @@ class DisplayView: UIView,UIGestureRecognizerDelegate {
     
     var startXKeyIndex:CGFloat = 0;
     var endXKeyIndex:CGFloat = 0;
+  
+    func reDraw()
+    {
+      
+    }
 
 }

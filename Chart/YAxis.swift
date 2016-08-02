@@ -73,15 +73,32 @@ class YAxis: UIView {
     }
 
 
-    let values: [String]
+    var values: [String]
     
     init(frame: CGRect, data:[String]) {
         
         self.values = data;
         super.init(frame: frame)
     }
-    
-    
+  
+  
+    func reDraw( low:CGFloat, high:CGFloat, units:Int)
+    {
+        let difference = (high-low)/CGFloat(units);
+        var data = [String]()
+        for index in 0...units
+        {
+          
+          let value = low+(difference*CGFloat(index))
+          data.append(String(Int(value)))
+          
+        }
+        
+        self.values = data;
+          self.setNeedsLayout();
+      
+    }
+  
     init(frame: CGRect, low:CGFloat, high:CGFloat, units:Int) {
         
         let difference = (high-low)/CGFloat(units);

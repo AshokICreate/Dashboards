@@ -25,12 +25,17 @@ class ColumnDisplayView: DisplayView {
     var popupHeight: CGFloat = 0
     
     override func layoutSubviews() {
-        for view in self.subviews
-        {
-            view.removeFromSuperview();
-        }
-        
-        self.drawChart();
+        self.reDraw();
+    }
+  
+    override func reDraw()
+    {
+      for view in self.subviews
+      {
+        view.removeFromSuperview();
+      }
+      
+      self.drawChart();
     }
     
     func drawChart()
@@ -82,7 +87,7 @@ class ColumnDisplayView: DisplayView {
                             view.tag = viewIndex
                             self.addSubview(view)
                             
-                            let touch = UITapGestureRecognizer.init(target: self, action: "tapped:")
+                            let touch = UITapGestureRecognizer.init(target: self, action: #selector(ColumnDisplayView.tapped(_:)))
                             touch.delegate = self;
                             view.addGestureRecognizer(touch);
                             

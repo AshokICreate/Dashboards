@@ -19,14 +19,17 @@ class LinesDisplayView: DisplayView {
     
     var popupWidth: CGFloat = 0
     var popupHeight: CGFloat = 0
-    
+  var views:[UIView] = [UIView]()
+  
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
         
         setSize()
-        
+
+      
+      
         if let currentContext = UIGraphicsGetCurrentContext(){
             
             CGContextClearRect(currentContext, rect)
@@ -80,6 +83,10 @@ class LinesDisplayView: DisplayView {
                                 
                                 view.backgroundColor = UIColor.clearColor();
                                 view.tag = viewIndex
+                                print(view.tag)
+                             
+                                self.views.append(view);
+                              
                                 self.addSubview(view)
                                 
                                 let touch = UITapGestureRecognizer.init(target: self, action: "tapped:")
@@ -146,7 +153,19 @@ class LinesDisplayView: DisplayView {
     
     
     let lineViewIndex = 1000;
-    
+  
+    override func reDraw()
+    {
+      
+      
+      for view in self.views {
+        view.removeFromSuperview()
+      }
+      
+      self.views = []
+      
+    }
+  
     override func layoutSubviews(){
         self.setNeedsDisplay();
     }
